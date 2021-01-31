@@ -1,7 +1,8 @@
 <template>
   <div class="userDetail">
     <div>
-      <div class="user_img"><img src="@/assets/head_img.jpg" alt="" /></div>
+      <div class="user_img"><img src="@/assets/head_img.jpg"
+             alt="" /></div>
       <div class="user_edit">
         <div>
           <p>
@@ -22,6 +23,11 @@
         </div>
       </div>
     </div>
+    <div class="">
+      <h2>小凤_</h2>
+      <p v-if="userInfo.user_desc">{{userInfo.user_desc}}</p>
+      <p v-else>这个人很神秘，什么都没有留下</p>
+    </div>
   </div>
 </template>
 
@@ -30,6 +36,7 @@
 export default {
   name: 'userDetail',
   components: {},
+  props: ['userInfo'],
   data () {
     return {
 
@@ -48,33 +55,33 @@ export default {
 .userDetail {
   background-color: #fff;
   padding: 0 12px;
-  > div {
+  > div:nth-child(1) {
     display: flex;
-  }
-  .user_img {
-    margin-right: 20px;
-    img {
-      height: 85px;
-      width: 85px;
-      border-radius: 50%;
+    .user_img {
+      margin: 10px 0 20px 0;
+      img {
+        height: 85px;
+        width: 85px;
+        border-radius: 50%;
+      }
     }
-  }
-  .user_edit {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    div:nth-child(1) {
+    .user_edit {
+      flex: 1;
       display: flex;
-      p {
-        flex: 1;
+      justify-content: center;
+      flex-direction: column;
+      div:nth-child(1) {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        font-size: 13px;
-        .user_text {
-          color: #b0b0b0;
+        p {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          font-size: 13px;
+          .user_text {
+            color: #b0b0b0;
+          }
         }
       }
     }
@@ -88,6 +95,16 @@ export default {
         justify-content: center;
         align-items: center;
       }
+    }
+  }
+  >div:nth-child(2) {
+    h2 {
+      margin: 10px 0 0;
+    }
+    p {
+      padding: 5px 0;
+      margin: 10px 0;
+      color: #999;
     }
   }
 }

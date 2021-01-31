@@ -1,9 +1,11 @@
 <template>
   <div class="userinfo">
     <nav-bar />
-    <img src="@/assets/bannerTop_new.png" alt="" class="backImg" />
+    <img src="@/assets/bannerTop_new.png"
+         alt=""
+         class="backImg" />
     <div>
-      <user-detail />
+      <user-detail :userInfo="model"/>
     </div>
   </div>
 </template>
@@ -11,7 +13,6 @@
 <script>
 import UserDetail from '../components/userComponent/userDetail.vue'
 import NavBar from './navBar.vue'
-
 
 export default {
   name: 'userinfo',
@@ -21,14 +22,25 @@ export default {
   },
   data () {
     return {
+      model: {}
     }
   },
   computed: {},
+  created () {
+    this.userinfoData()
+  },
   mounted () {
 
   },
   methods: {
-
+    async userinfoData () {
+      const res = await this.$http.get('/user/' + localStorage.getItem('id'), {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      })
+      this.model = res.data[0]
+    }
   }
 }
 </script>

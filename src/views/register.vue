@@ -52,9 +52,8 @@ export default {
       const rulg = /^.{6,16}/
       if (rulg.test(this.model.name) && rulg.test(this.model.username) && rulg.test(this.model.password)) {
         const res = await this.$http.post('/register', this.model)
-        console.log('res', res)
-        console.log('model', this.model)
         this.$msg.fail(res.data.msg)
+        // 本地存储获取到的token和id
         localStorage.setItem('token', res.data.objtoken)
         localStorage.setItem('id', res.data.id)
         setTimeout(() => {
